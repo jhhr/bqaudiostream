@@ -45,7 +45,14 @@
 #include <mferror.h>
 #include <propvarutil.h>
 #include <propkey.h>
+#ifdef __MINGW32__
+// mingw-w64 ships shobjidl.h (the full umbrella header) rather than
+// the split shobjidl_core.h that MSVC's SDK provides. Both declare
+// SHGetPropertyStoreFromParsingName, which is all we need here.
+#include <shobjidl.h>
+#else
 #include <shobjidl_core.h>
+#endif
 #include <stdio.h>
 #include <VersionHelpers.h>
 
